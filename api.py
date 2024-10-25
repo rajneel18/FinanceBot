@@ -107,6 +107,17 @@ async def ask_question(request: QuestionRequest, api_key: str = Depends(api_key_
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+async def read_root():
+    return {"message": "Welcome to the Finance Bot API!"}
+
+# Your existing endpoints go here
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
